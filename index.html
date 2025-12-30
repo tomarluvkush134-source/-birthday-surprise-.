@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Something Special 🎉</title>
+
+<!-- Handwriting Font -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Pacifico', cursive;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:
+      linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
+      url('https://i.pinimg.com/originals/4g/Wn/t7/4gWnt7sED.jpg');
+    background-size:cover;
+    background-position:center;
+}
+
+/* Portrait Image */
+.portrait{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:260px;
+    height:360px;
+    background:#fff;
+    border-radius:22px;
+    box-shadow:0 20px 45px rgba(0,0,0,0.25);
+    z-index:5;
+}
+
+/* Text */
+.text{
+    position:absolute;
+    bottom:7%;
+    width:100%;
+    text-align:center;
+    font-size:28px;
+    color:#222;
+    z-index:6;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 5px #ffb6c1;}
+    to{ text-shadow:0 0 18px #ff69b4;}
+}
+
+/* Balloons */
+.balloon{
+    position:absolute;
+    bottom:-120px;
+    width:42px;
+    height:58px;
+    border-radius:50%;
+    animation: fly 9s linear infinite;
+}
+
+.balloon::after{
+    content:'';
+    position:absolute;
+    width:2px;
+    height:40px;
+    background:#888;
+    left:50%;
+    top:58px;
+}
+
+@keyframes fly{
+    0%{ transform:translateY(0); opacity:1;}
+    100%{ transform:translateY(-120vh); opacity:0;}
+}
+
+/* Firework */
+.firework{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    box-shadow:
+    0 -70px #ff0,
+    70px 0 #f00,
+    0 70px #0ff,
+    -70px 0 #f0f;
+    animation: explode 1.4s ease-out infinite;
+}
+
+@keyframes explode{
+    from{ transform:scale(0); opacity:1;}
+    to{ transform:scale(1); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="portrait"></div>
+
+<div class="text">
+    Something I have for you, hope 🤭🤭
+</div>
+
+<script>
+// Balloons
+for(let i=0;i<22;i++){
+    let b=document.createElement('div');
+    b.className='balloon';
+    b.style.left=Math.random()*100+'%';
+    b.style.background=`hsl(${Math.random()*360},70%,60%)`;
+    b.style.animationDuration=(6+Math.random()*6)+'s';
+    document.body.appendChild(b);
+}
+
+// Fireworks
+setInterval(()=>{
+    let f=document.createElement('div');
+    f.className='firework';
+    f.style.left=Math.random()*100+'%';
+    f.style.top=Math.random()*45+'%';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1400);
+},650);
+</script>
+
+</body>
+  </html>
