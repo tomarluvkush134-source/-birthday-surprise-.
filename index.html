@@ -132,5 +132,370 @@ setInterval(()=>{
 },650);
 </script>
 
+</<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<title>Birthday Surprise 🎉</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{overflow:hidden}
+
+/* COMMON */
+.screen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+}
+
+/* SCREEN 2 */
+#screen2{
+  background:#000;
+  color:#fff;
+  font-size:26px;
+  font-family:'Pacifico',cursive;
+  display:none;
+}
+
+/* SCREEN 3 */
+#screen3{
+  display:none;
+  background:linear-gradient(120deg,#fff,#ffd6e8);
+  font-family:'Dancing Script',cursive;
+}
+
+#screen3 h1{
+  font-size:42px;
+  color:#ff2f7d;
+  z-index:5;
+}
+
+/* SCREEN 4 */
+#screen4{
+  display:none;
+  background:linear-gradient(120deg,#fff,#ffc1dc);
+  font-family:'Dancing Script',cursive;
+  padding:20px;
+}
+
+#screen4 h2{
+  font-size:38px;
+  color:#ff2f7d;
+}
+
+.quote{
+  margin-top:20px;
+  font-size:24px;
+  color:#444;
+  max-width:600px;
+}
+
+.name{
+  margin-top:30px;
+  font-size:26px;
+  color:#ff2f7d;
+}
+
+/* Balloons */
+.balloon{
+  position:absolute;
+  bottom:-100px;
+  width:40px;
+  height:55px;
+  border-radius:50%;
+  animation:fly 8s linear infinite;
+}
+@keyframes fly{
+  to{transform:translateY(-120vh);opacity:0}
+}
+
+/* Firework */
+.firework{
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  box-shadow:
+    0 -60px #ff0,
+    60px 0 #f00,
+    0 60px #0ff,
+    -60px 0 #f0f;
+  animation:boom 1.3s ease-out infinite;
+}
+@keyframes boom{
+  from{transform:scale(0);opacity:1}
+  to{transform:scale(1);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 (tumhari pehli animation yahan rahegi) -->
+<div id="screen1" class="screen">
+  <!-- already created animation -->
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2" class="screen">
+  Tap anywhere to continue
+</div>
+
+<!-- SCREEN 3 -->
+<div id="screen3" class="screen">
+  <h1>Happy Birthday My Love 🎉🤌🏻❤</h1>
+</div>
+
+<!-- SCREEN 4 -->
+<div id="screen4" class="screen">
+  <h2>Happy Birthday</h2>
+  <div class="quote">
+    May your days be filled with smiles,  
+    your heart with warmth,  
+    and your life with beautiful moments 💗
+  </div>
+  <div class="name">— Luvkush</div>
+</div>
+
+<script>
+/* TIMING */
+setTimeout(()=>{
+  screen1.style.display="none";
+  screen2.style.display="flex";
+},6000);
+
+/* TAP TO CONTINUE */
+screen2.addEventListener("click",()=>{
+  screen2.style.display="none";
+  screen3.style.display="flex";
+  startCelebration();
+  setTimeout(()=>{
+    screen3.style.display="none";
+    screen4.style.display="flex";
+    playTone();
+  },10000);
+});
+
+/* BALLOONS + FIREWORKS */
+function startCelebration(){
+  for(let i=0;i<25;i++){
+    let b=document.createElement("div");
+    b.className="balloon";
+    b.style.left=Math.random()*100+"%";
+    b.style.background=`hsl(${Math.random()*360},70%,60%)`;
+    screen3.appendChild(b);
+  }
+  setInterval(()=>{
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.left=Math.random()*100+"%";
+    f.style.top=Math.random()*50+"%";
+    screen3.appendChild(f);
+    setTimeout(()=>f.remove(),1300);
+  },600);
+}
+
+/* SIMPLE BIRTHDAY TONE (safe) */
+function playTone(){
+  const ctx=new AudioContext();
+  const o=ctx.createOscillator();
+  const g=ctx.createGain();
+  o.connect(g); g.connect(ctx.destination);
+  o.frequency.value=440;
+  o.start();
+  g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+2);
+}
+</script>
+
 </body>
+</html><body>
+
+<!-- SCREEN 1 : TUMHARA PEHLA ANIMATION -->
+<div id="screen1" class="screen">
+
+  <div class="portrait"></div>
+
+  <div class="text">
+    Something I have for you, hope 🤭🤭
+  </div>
+
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2" class="screen" style="display:none;background:black;color:white;font-size:26px;font-family:'Pacifico',cursive;">
+  Tap anywhere to continue
+</div>
+
+<!-- SCREEN 3 -->
+<div id="screen3" class="screen" style="display:none;background:linear-gradient(120deg,#fff,#ffd6e8);font-family:'Dancing Script',cursive;">
+  <h1 style="font-size:42px;color:#ff2f7d;">Happy Birthday My Love 🎉🤌🏻❤</h1>
+</div>
+
+<!-- SCREEN 4 -->
+<div id="screen4" class="screen" style="display:none;background:linear-gradient(120deg,#fff,#ffc1dc);font-family:'Dancing Script',cursive;">
+  <h2 style="font-size:38px;color:#ff2f7d;">Happy Birthday</h2>
+  <p style="font-size:24px;color:#444;max-width:600px;">
+    May your life always bloom with smiles, love and beautiful moments 💗
+  </p>
+  <div style="margin-top:30px;font-size:26px;color:#ff2f7d;">
+    — Luvkush
+  </div>
+</div>
+
+<script>
+/* BALLOONS + FIREWORKS FOR SCREEN 1 */
+for(let i=0;i<22;i++){
+ let b=document.createElement('div');
+ b.className='balloon';
+ b.style.left=Math.random()*100+'%';
+ b.style.background=`hsl(${Math.random()*360},70%,60%)`;
+ b.style.animationDuration=(6+Math.random()*6)+'s';
+ screen1.appendChild(b);
+}
+
+setInterval(()=>{
+ let f=document.createElement('div');
+ f.className='firework';
+ f.style.left=Math.random()*100+'%';
+ f.style.top=Math.random()*45+'%';
+ screen1.appendChild(f);
+ setTimeout(()=>f.remove(),1400);
+},650);
+
+/* SCREEN FLOW */
+setTimeout(()=>{
+ screen1.style.display="none";
+ screen2.style.display="flex";
+},6000);
+
+screen2.addEventListener("click",()=>{
+ screen2.style.display="none";
+ screen3.style.display="flex";
+ startCelebration();
+ setTimeout(()=>{
+   screen3.style.display="none";
+   screen4.style.display="flex";
+ },10000);
+});
+
+/* SCREEN 3 EFFECTS */
+function startCelebration(){
+ for(let i=0;i<30;i++){
+  let b=document.createElement("div");
+  b.className="balloon";
+  b.style.left=Math.random()*100+"%";
+  b.style.background=`hsl(${Math.random()*360},70%,60%)`;
+  screen3.appendChild(b);
+ }
+ setInterval(()=>{
+  let f=document.createElement("div");
+  f.className="firework";
+  f.style.left=Math.random()*100+"%";
+  f.style.top=Math.random()*50+"%";
+  screen3.appendChild(f);
+  setTimeout(()=>f.remove(),1300);
+ },600);
+}<body>
+
+<!-- SCREEN 1 : TUMHARA PEHLA ANIMATION -->
+<div id="screen1" class="screen">
+
+  <div class="portrait"></div>
+
+  <div class="text">
+    Something I have for you, hope 🤭🤭
+  </div>
+
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2" class="screen" style="display:none;background:black;color:white;font-size:26px;font-family:'Pacifico',cursive;">
+  Tap anywhere to continue
+</div>
+
+<!-- SCREEN 3 -->
+<div id="screen3" class="screen" style="display:none;background:linear-gradient(120deg,#fff,#ffd6e8);font-family:'Dancing Script',cursive;">
+  <h1 style="font-size:42px;color:#ff2f7d;">Happy Birthday My Love 🎉🤌🏻❤</h1>
+</div>
+
+<!-- SCREEN 4 -->
+<div id="screen4" class="screen" style="display:none;background:linear-gradient(120deg,#fff,#ffc1dc);font-family:'Dancing Script',cursive;">
+  <h2 style="font-size:38px;color:#ff2f7d;">Happy Birthday</h2>
+  <p style="font-size:24px;color:#444;max-width:600px;">
+    May your life always bloom with smiles, love and beautiful moments 💗
+  </p>
+  <div style="margin-top:30px;font-size:26px;color:#ff2f7d;">
+    — Luvkush
+  </div>
+</div>
+
+<script>
+/* BALLOONS + FIREWORKS FOR SCREEN 1 */
+for(let i=0;i<22;i++){
+ let b=document.createElement('div');
+ b.className='balloon';
+ b.style.left=Math.random()*100+'%';
+ b.style.background=`hsl(${Math.random()*360},70%,60%)`;
+ b.style.animationDuration=(6+Math.random()*6)+'s';
+ screen1.appendChild(b);
+}
+
+setInterval(()=>{
+ let f=document.createElement('div');
+ f.className='firework';
+ f.style.left=Math.random()*100+'%';
+ f.style.top=Math.random()*45+'%';
+ screen1.appendChild(f);
+ setTimeout(()=>f.remove(),1400);
+},650);
+
+/* SCREEN FLOW */
+setTimeout(()=>{
+ screen1.style.display="none";
+ screen2.style.display="flex";
+},6000);
+
+screen2.addEventListener("click",()=>{
+ screen2.style.display="none";
+ screen3.style.display="flex";
+ startCelebration();
+ setTimeout(()=>{
+   screen3.style.display="none";
+   screen4.style.display="flex";
+ },10000);
+});
+
+/* SCREEN 3 EFFECTS */
+function startCelebration(){
+ for(let i=0;i<30;i++){
+  let b=document.createElement("div");
+  b.className="balloon";
+  b.style.left=Math.random()*100+"%";
+  b.style.background=`hsl(${Math.random()*360},70%,60%)`;
+  screen3.appendChild(b);
+ }
+ setInterval(()=>{
+  let f=document.createElement("div");
+  f.className="firework";
+  f.style.left=Math.random()*100+"%";
+  f.style.top=Math.random()*50+"%";
+  screen3.appendChild(f);
+  setTimeout(()=>f.remove(),1300);
+ },600);
+}
+</script>
+
+</body>
+</script>
+
+</body>>
   </html>
